@@ -285,7 +285,7 @@ require('telescope').setup {
   }
 }
 
--- # GIT_BLAME #
+-- # GIT-BLAME #
 require("gitblame").setup({
 	enabled = true,
 })
