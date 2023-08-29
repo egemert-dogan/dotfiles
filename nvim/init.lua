@@ -8,6 +8,8 @@ vim.cmd [[autocmd BufEnter * TSEnable highlight ]]
 vim.g.indent_blankline_filetype_exclude = {"dashboard", "help",}
 
 vim.opt.termguicolors = true
+vim.g.gitblame_ignored_filetypes = { "NvimTree" }
+
 --vim.opt.t_Co=256
 
 -- # LAZY NVIM #
@@ -64,6 +66,7 @@ require("lazy").setup({
 		'nvim-telescope/telescope.nvim',
 		dependencies = { 'nvim-lua/plenary.nvim' },
     	},
+	"f-person/git-blame.nvim",
 })
 
 -- # WHICH-KEY #
@@ -267,3 +270,8 @@ require('telescope').setup {
     }
   }
 }
+
+-- # GIT_BLAME #
+require("gitblame").setup({
+	enabled = true,
+})
