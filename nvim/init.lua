@@ -8,9 +8,8 @@ vim.cmd [[autocmd BufEnter * TSEnable highlight ]]
 vim.g.indent_blankline_filetype_exclude = {"dashboard", "help",}
 
 vim.opt.termguicolors = true
-vim.g.gitblame_ignored_filetypes = { "NvimTree" }
 
---vim.opt.t_Co=256
+vim.g.gitblame_ignored_filetypes = { "NvimTree" }
 
 -- # LAZY NVIM #
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -67,6 +66,7 @@ require("lazy").setup({
 		dependencies = { 'nvim-lua/plenary.nvim' },
     	},
 	"f-person/git-blame.nvim",
+	"akinsho/toggleterm.nvim",
 })
 
 -- # WHICH-KEY #
@@ -79,6 +79,7 @@ local wk_mappings = {
 	c = { "<cmd>HighlightColorsToggle<cr>", "Toggle Highlighting Colors" },
 	f = { "<cmd>Telescope find_files hidden=true<cr>", "Find Files" },
 	g = { "<cmd>Telescope live_grep hidden=true<cr>", "Live Grep" },
+	z = { "<cmd>ToggleTerm<cr>", "Toggle Terminal" },
 	q = { "<cmd>BufferGoto 1<cr>", "Switch to Buffer #1" },
 	w = { "<cmd>BufferGoto 2<cr>", "Switch to Buffer #2" },
 	e = { "<cmd>BufferGoto 3<cr>", "Switch to Buffer #3" },
@@ -117,28 +118,27 @@ lusasnip.config.set_config({
 local cmp = require'cmp'
 
 cmp.setup({
-    snippet = {
-      -- REQUIRED - you must specify a snippet engine
-      expand = function(args)
-        require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-      end,
-    },
-    window = {
-      completion = cmp.config.window.bordered(),
-      documentation = cmp.config.window.bordered(),
-    },
-    mapping = cmp.mapping.preset.insert({
-      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.abort(),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    }),
-    sources = cmp.config.sources({
-	    { name = "luasnip" },
-	    { name = "path" },
-	    { name = "buffer" },
-      }),
+	snippet = {
+		expand = function(args)
+			require('luasnip').lsp_expand(args.body)
+		end,
+    	},
+    	window = {
+      		completion = cmp.config.window.bordered(),
+      		documentation = cmp.config.window.bordered(),
+    	},
+    	mapping = cmp.mapping.preset.insert({
+      		['<C-b>'] = cmp.mapping.scroll_docs(-4),
+      		['<C-f>'] = cmp.mapping.scroll_docs(4),
+      		['<C-Space>'] = cmp.mapping.complete(),
+      		['<C-e>'] = cmp.mapping.abort(),
+      		['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    	}),
+    	sources = cmp.config.sources({
+		{ name = "luasnip" },
+	    	{ name = "path" },
+	    	{ name = "buffer" },
+      	}),
 })
 
 -- # DASHBOARD #
@@ -196,7 +196,6 @@ require("dashboard").setup({
 		}
 	}
 })
-
 vim.cmd [[hi DashBoardHeader guifg=#ea6962]]
 
 -- # TREESITTER #
@@ -212,7 +211,22 @@ require("nvim-treesitter.configs").setup({
 })
 
 -- # BARBAR #
-require("barbar").setup()
+vim.g.barbar_auto_setup = false
+require("barbar").setup({
+	animation = true,
+	tabpages = true,
+	highlight_visible = true,
+	filetype = {
+		enabled = true,
+	},
+	icons = {
+		separator = {left = '▎', right = ' ▎'},
+		separator_at_end = false,
+	},
+	sidebar_filetypes = {
+		NvimTree  = true,
+	}
+})
 
 vim.cmd [[hi BufferTabpageFill guibg=#1d2021]]
 
@@ -275,3 +289,6 @@ require('telescope').setup {
 require("gitblame").setup({
 	enabled = true,
 })
+
+-- # TOGGLE-TERM #
+require("toggleterm").setup()
