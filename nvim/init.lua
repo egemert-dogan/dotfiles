@@ -132,10 +132,10 @@ cmp.setup({
       ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     }),
     sources = cmp.config.sources({
-	    { name = 'luasnip' }, -- For luasnip users.
-      }, {
-      { name = 'buffer' },
-    })
+	    { name = "luasnip" },
+	    { name = "path" },
+	    { name = "buffer" },
+      }),
 })
 
 -- # DASHBOARD #
