@@ -1,0 +1,114 @@
+(defpoll volume :interval "500ms" `~/.config/eww/scripts/do.sh system vol`)
+(defpoll date :interval "500ms" `date +'{"hour":"%H","min":"%M"}'`)
+(defpoll music_name :interval "500ms" `~/.config/eww/scripts/do.sh music name`)
+(defpoll kb_layout :interval "500ms" `~/.config/eww/scripts/do.sh keyboard layout`)
+
+(defvar volume_reveal false)
+(defvar music_reveal false)
+
+(defvar music_prev `~/.config/eww/scripts/do.sh music prev`)
+(defvar music_toggle `~/.config/eww/scripts/do.sh music toggle`)
+(defvar music_next `~/.config/eww/scripts/do.sh music next`)
+
+(defwidget bar []
+	(centerbox :orientation "h"
+                (workspace)
+                (music)
+                (sidestuff)))
+
+
+
+(defwidget workspace []
+        (box :class "workspace"
+        :spacing 5
+        :orientation "h"
+        :space-evenly false
+        :halign "start"))
+
+(defwidget music []
+        (box :class "music"
+        :spacing 5
+        :orientation "h"
+        :space-evenly false
+        :halign "center"
+        (eventbox :onhover "eww update music_reveal=true"
+        :onhoverlost "eww update music_reveal=false"
+                (box :orientation "h"
+                  :space-evenly false
+                        (label :class "icon" :text "")
+                        (label :class "music_name" :text "${music_name}")
+
+
+        (revealer :transition "slideright"
+        :reveal music_reveal
+        :duration "550ms"
+        :halign "center"
+                (box :orientation "h"
+                :spacing 3
+                :space-evenly false
+                :halign "center"
+                :valign "center"
+                :class "music_buttons"
+                        (button :onclick "${music_prev}"
+                                (label :class "icon" :text ""))
+                        (button :onclick "${music_toggle}"
+                                (label :class "icon" :text ""))
+                        (button :onclick "${music_next}"
+                                (label :class "icon" :text ""))
+                                ))))))
+
+
+(defwidget sidestuff []
+	(box :class "sidestuff"
+        :spacing 10
+	:orientation "h"
+	:space-evenly false
+	:halign "end"
+                (box :orientation "h"
+                :space-evenly false
+                :halign "center"
+                :valign "center"
+                     (label :class "icon" :text "")
+                     (button :onclick "hyprctl switchxkblayout semico---usb-gaming-keyboard- next"
+                :onrightclick "hyprctl switchxkblayout semico---usb-gaming-keyboard- prev"
+                        (label :text "${kb_layout}" )))
+                (revealer :transition "slideleft"
+		:reveal volume_reveal
+		:duration "550ms"
+		:halign "center"
+			(box :orientation "h"
+			:space-evenly false
+			:halign "center"
+			:valign "center"
+                        :class "volume"
+				(scale  :value volume
+		     		:orientation "h"
+				:flipped true
+		     		:tooltip "Volume: ${volume}%"
+		     		:max 101
+		     		:min 0
+		     		:onchange "pamixer --set-volume {}")))
+	        (button :onclick "eww update volume_reveal=true"
+		:onrightclick "eww update volume_reveal=false"
+                        (label :class "icon" :text ""))
+
+                (box :orientation "h"
+                :class "date"
+                :space-evenly false
+                :halign "end"
+                :valign "center"
+                        (label :class "icon" :text "")
+                        (label :text "${date.hour}:")
+                        (label :text "${date.min}"))))
+
+(defwindow bar
+	:monitor 0
+	:windowtype "dock"
+        :exclusive true 
+	:geometry (geometry :x "0"
+		:y "0"
+		:width "100%"
+		:height "4%"
+		:anchor "bottom center")
+	:wm-ignore false
+	(bar))

@@ -1,0 +1,56 @@
+* {
+	all: unset;
+	font-family: Terminus;
+	font-weight: bold;
+	color: #e2cca9;
+	font-size: 18px;
+}
+
+.bar {
+	background-color: #141617;
+}
+
+.music {
+	font-size: 18px;
+	color: #e2cca9;
+}
+
+.music_buttons {
+	margin-left: 10px;
+}
+
+.music_toggle {
+	padding: 0px 5px 0px 5px;
+}
+
+scale trough {
+	background-color: #5F605A;
+	border-radius: 16px;
+	min-height: 10px;
+	min-width: 60px;
+	margin: 5px;
+}
+
+scale trough highlight {
+	border-radius: 16px;
+}
+
+.volume scale trough highlight {
+	background-color: #b0b846;
+}
+
+.sidestuff {
+	margin-right: 10px;
+}
+
+.date {
+	margin: 0px;
+}
+
+.icon {
+	color: #ea6962;
+	font-family: siji;
+	font-size: 24px;
+	font-weight: normal;
+	margin: 5px;
+}
