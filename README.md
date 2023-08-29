@@ -8,14 +8,14 @@
 
 #### Stuff I Use
 
-Terminal: Alacritty
-Browser: w3m (Communist Manifesto Reader)
-Music Player: ncmpcpp
-Feth: rxfetch
-Text Editor: NeoVim (NVim)
-Top: BTOP
-Bar: EWW
-Fonts: Terminus & Siji
+* Terminal: Alacritty
+* Browser: w3m (Communist Manifesto Reader)
+* Music Player: ncmpcpp
+* Feth: rxfetch
+* Text Editor: NeoVim (NVim)
+* Top: BTOP
+* Bar: EWW
+* Fonts: Terminus & Siji
 
 #### License
 
