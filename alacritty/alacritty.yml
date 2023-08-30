@@ -1,0 +1,58 @@
+#import:
+#  - ~/.cache/wal/colors-alacritty.yml
+
+colors:
+  primary:
+    background: '#1d2021'
+    foreground: '#e2cca9'
+
+  cursor:
+    text:   '#1d2021'
+    cursor: '#e2cca9'
+
+  normal:
+    black:   '#1c1c1c'
+    red:     '#f2594b'
+    green:   '#b0b846'
+    yellow:  '#e9b143'
+    blue:    '#80aa9e'
+    magenta: '#d3869b'
+    cyan:    '#8bba7f'
+    white:   '#e2cca9'
+ 
+  bright:
+    black:   '#141617'
+    red:     '#f2594b'
+    green:   '#b0b846'
+    yellow:  '#e9b143'
+    blue:    '#80aa9e'
+    magenta: '#d3869b'
+    cyan:    '#8bba7f'
+    white:   '#e2cca9'
+
+
+font:
+  normal:
+    family: Terminus
+    style: Regular
+
+  bold:
+    family: Terminus
+    style: Regular
+
+  italic:
+    family: Terminus
+    style: Regular
+
+  bold_italic:
+    family: Terminus
+    style: Regular
+
+  size: 10
+
+window:
+  dynamic_padding: true
+  opacity: 1
+  padding:
+    x: 10
+    y: 10
