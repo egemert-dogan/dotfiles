@@ -12,6 +12,7 @@
 * Browser: w3m (Communist Manifesto Reader)
 * Music Player: ncmpcpp
 * Feth: rxfetch
+* App Launcher: Rofi
 * Text Editor: NeoVim (NVim)
 * Top: BTOP
 * Bar: EWW
